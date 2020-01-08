@@ -38,6 +38,39 @@ app.post('/tambah', (req, res) => {
     return res.send(`The result value is ${c}`)
 })
 
+app.post('/persegi', (req,res)=>{
+    var x, y, z
+    
+    x = parseInt(req.body.x)
+    y = parseInt(req.body.y)
+    z = x * y
+
+    return res.send(`luas persegi ${z}`)
+})
+
+app.post('/trapesium', (req,res)=>{
+
+    let sisiA, sisiB, tinggi, luas
+
+    sisiA = parseInt(req.body.sisiA)
+    sisiB = parseInt(req.body.sisiB)
+    tinggi= parseInt(req.body.tinggi)
+    luas = (sisiA + sisiB)*tinggi/2
+
+    return res.send(`luas trapesium ${luas}`)
+    
+})
+
+app.post('/segitiga', (req,res)=>{
+    let alas,tinggi,luas
+
+    alas = parseInt(req.body.alas)
+    tinggi= parseInt(req.body.tinggi)
+    luas = alas*tinggi/2
+
+    return res.send(`luas segitiga ${luas}`)
+})
+
 app.listen(3300, () => {
     console.log(`Example app listening on port 3300`)
 })
