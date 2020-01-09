@@ -307,6 +307,19 @@ app.get('/array',(req,res)=>{
 app.use("/array-route", array_router)
 app.use(array_router)
 
+app.route('/book')
+.get((req,res)=>{
+    res.send('get a random book')
+})
+.post((req,res)=>{
+    res.send('add a book')
+})
+.put((req,res)=>{
+    res.send('update the book')
+})
+
+
+
 app.listen(3300, () => {
     console.log(`Example app listening on port 3300`)
 })
