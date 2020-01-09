@@ -1,5 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser');
+const objectLibs = require('./lib/object')
+const arrayLibs = require('./lib/array')
+const array_sorting = require('./lib/task1')
+const array_router = require('./route')
 const app = express()
 
 // for parsing application/x-www-form-urlencoded
@@ -238,6 +242,70 @@ app.put('/jobs/:name', (req,res)=>{
     db.push(newJob)
     return res.json(newJob)
 })
+
+// day 4
+app.get('/object', (req,res)=>{
+    let data = {
+        firstname: "Muhammad",
+        lastname: "Padri",
+
+    }
+    let result = objectLibs.manipulate(data)
+
+    return res.send(result)
+})
+
+app.get('/merge', (req,res)=>{
+    let input = ["black"]
+    let data = ["red","blue","yellow","green"]
+    console.log("before", data)
+
+    let result = objectLibs.merge((data=data), (input=input))
+    console.log("after", result)
+
+    return res.send(result)
+})
+
+app.get('/example4', (req,res)=>{
+    let empty_data = []
+    console.log("before", empty_data)
+
+    let color = "Red"
+    objectLibs.add(empty_data, color)
+    console.log("after", empty_data)
+
+    return res.send(empty_data)
+})
+
+// array
+app.get('/task1', (req,res)=>{
+    let alpha = ["Q","W","E","A","S","D","Z","C"]
+    console.log("before", alpha)
+
+    let result = array_sorting.ascending_test(alpha)
+    console.log("after", result)
+    return res.send(result)
+})
+
+app.get('/task2', (req,res)=>{
+    let alpha = ["Q","W","E","A","S","D","Z","C"]
+    console.log("before", alpha)
+
+    let result = array_sorting.descending_test(alpha)
+    console.log("after", result)
+
+    return res.send(result)
+})
+
+app.get('/array',(req,res)=>{
+    let data = ["red", "blue", "yellow", "green"]
+    let manipulation = arrayLibs(data)
+
+    return res.send(manipulation)
+})
+
+app.use("/array-route", array_router)
+app.use(array_router)
 
 app.listen(3300, () => {
     console.log(`Example app listening on port 3300`)
