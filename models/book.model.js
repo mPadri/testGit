@@ -9,6 +9,12 @@ let bookSchema  = new Schema ({
     publisher   : String
 })
 
+// let userSchema = new Schema ({
+//     userId : Number,
+//     nama : String,
+//     email: String
+// })
+
 let Book = mongoose.model("Book", bookSchema)
 
 module.exports = Book
