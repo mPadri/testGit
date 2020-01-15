@@ -28,7 +28,7 @@ class Register {
                 }
             }
             let password = bcrypt.hashSync(this.password, 8)
-            console.log(`Hashing password ${password}`)
+            // console.log(`Hashing password ${password}`)
 
             let insert_data = {
                 name: this.name,
@@ -46,6 +46,7 @@ class Register {
             const transporter = await nodemailer.createTransport(options)
 
             const data = {
+                from: 'gmail@gmail.com',
                 to: this.email,
                 subject: 'Register and GET token to verify',
                 text: `Here is your token: ${token}`,

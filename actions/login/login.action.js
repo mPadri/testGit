@@ -11,7 +11,7 @@ class Login {
     async exec() {
         try {
             let data = await User.find({
-                email: this.email
+                $and: [{username: this.username},{email: this.email}]
             }).exec()
 
             if (data.length == 0) {
